@@ -18,26 +18,26 @@ class BeastSource<T:BMappable>  {
     
     // MARK: - manual key storage
     
-    static func objects(key:String) -> [T]? {
+    public static func objects(key:String) -> [T]? {
         return BeastNOSQL.mappableObjectsArray(forKey: key, mapper: Mapper<T>())
     }
     
-    static func setObjects(objs:[T]?, key:String) {
+    public static func setObjects(objs:[T]?, key:String) {
         BeastNOSQL.setMappableObjectsArray(value: objs, key: key)
     }
     
-    static func object(key:String) -> T? {
+    public static func object(key:String) -> T? {
         return BeastNOSQL.mappableObject(forKey: key, mapper: Mapper<T>())
     }
     
-    static func setObject(obj:T?, key:String) {
+    public static func setObject(obj:T?, key:String) {
         BeastNOSQL.setMappableObject(value: obj, key: key)
     }
     
     
     // MARK: - automatic key storage
     
-    static var objs:[T]? {
+    public static var objs:[T]? {
         
         get {
             return BeastNOSQL.mappableObjectsArray(forKey: String(describing: T.self), mapper: Mapper<T>())
@@ -47,7 +47,7 @@ class BeastSource<T:BMappable>  {
         }
     }
     
-    static var obj:T? {
+    public static var obj:T? {
         
         get {
             return BeastNOSQL.mappableObject(forKey: String(describing: T.self), mapper: Mapper<T>())
@@ -59,11 +59,11 @@ class BeastSource<T:BMappable>  {
     
     // MARK: - object wrapper
     
-    static func fromJson(jsonData: AnyObject) -> T? {
+    public static func fromJson(jsonData: AnyObject) -> T? {
         return Mapper<T>().map(JSONObject: jsonData)
     }
     
-    static func arrayFromJson(jsonData: AnyObject) -> [T]? {
+    public static func arrayFromJson(jsonData: AnyObject) -> [T]? {
         return Mapper<T>().mapArray(JSONObject: jsonData)
     }
 }
@@ -76,18 +76,18 @@ class BeastNOSQL {
     
     // MARK: - simple object
     
-    static func object(key: String) -> Any? {
+    public static func object(key: String) -> Any? {
         return UserDefaults.standard.object(forKey: key)
     }
     
-    static func setObject(value: Any?, key: String) {
+    public static func setObject(value: Any?, key: String) {
         UserDefaults.standard.set(value, forKey: key)
     }
     
     
     // MARK: - mappable single object
     
-    static func setMappableObject<N:BMappable>(value: N?, key: String) {
+    public static func setMappableObject<N:BMappable>(value: N?, key: String) {
         
         guard let v = value else {
             setObject(value: nil, key: key)
@@ -96,14 +96,14 @@ class BeastNOSQL {
         setObject(value: Mapper().toJSONString(v), key: key)
     }
     
-    static func mappableObject<N:BMappable>(forKey: String, mapper: Mapper<N>) -> N? {
+    public static func mappableObject<N:BMappable>(forKey: String, mapper: Mapper<N>) -> N? {
         return mapper.map(JSONObject: object(key: forKey))
     }
     
     
     // MARK: - mappable objects array
     
-    static func setMappableObjectsArray<N:BMappable>(value: [N]?, key: String) {
+    public static func setMappableObjectsArray<N:BMappable>(value: [N]?, key: String) {
         
         guard let v = value else {
             setObject(value: nil, key: key)
@@ -112,7 +112,7 @@ class BeastNOSQL {
         setObject(value: Mapper().toJSONString(v), key: key)
     }
     
-    static func mappableObjectsArray<N:BMappable>(forKey: String, mapper: Mapper<N>) -> [N]? {
+    public static func mappableObjectsArray<N:BMappable>(forKey: String, mapper: Mapper<N>) -> [N]? {
         return mapper.mapArray(JSONObject: object(key: forKey))
     }
 }

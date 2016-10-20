@@ -10,7 +10,7 @@ import Foundation
 
 import ObjectMapper
 
-protocol BMappable:Mappable {
+public protocol BMappable:Mappable {
     
     var _id:Int? { get }
     var _title:String? { get }

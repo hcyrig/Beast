@@ -13,7 +13,7 @@ import Foundation
 
 class BeastWrapper {
     
-    static func stringWithNamesOfObjsByIds(objIds: [Int]?, fromObjs:[AnyObject]) -> String? {
+    public static func stringWithNamesOfObjsByIds(objIds: [Int]?, fromObjs:[AnyObject]) -> String? {
         if objIds == nil { return nil }
         
         if let objs = objsByObjIds(ids: objIds!, fromObjs: fromObjs) {
@@ -27,7 +27,7 @@ class BeastWrapper {
         return nil
     }
     
-    static func arrayWithNamesOfObjs(objs: [AnyObject]?) -> [String]? {
+    public static func arrayWithNamesOfObjs(objs: [AnyObject]?) -> [String]? {
         if objs == nil { return nil }
         
         var strings: [String] = []
@@ -41,7 +41,7 @@ class BeastWrapper {
         return strings
     }
     
-    static func objsByObjIdsInString(idsString: String, fromObjs:[AnyObject]) -> [AnyObject]? {
+    public static func objsByObjIdsInString(idsString: String, fromObjs:[AnyObject]) -> [AnyObject]? {
         
         if let array = objsIdsByObjIdsInString(idsString: idsString) {
             return objsByObjIds(ids: array, fromObjs: fromObjs)
@@ -49,7 +49,7 @@ class BeastWrapper {
         return []
     }
     
-    static func objsByObjIds(ids: [Int], fromObjs:[AnyObject]) -> [AnyObject]? {
+    public static func objsByObjIds(ids: [Int], fromObjs:[AnyObject]) -> [AnyObject]? {
         
         let result = fromObjs.filter { (obj: AnyObject) -> Bool in
             
@@ -63,7 +63,7 @@ class BeastWrapper {
         return result
     }
     
-    static func stringWithIdsOfObjsByIds(objIds: [Int]?) -> String? {
+    public static func stringWithIdsOfObjsByIds(objIds: [Int]?) -> String? {
         if objIds == nil { return nil }
         
         var string = objIds!.description
@@ -73,7 +73,7 @@ class BeastWrapper {
         return string
     }
     
-    static func objsIdsByObjIdsInString(idsString: String?) -> [Int]? {
+    public static func objsIdsByObjIdsInString(idsString: String?) -> [Int]? {
         
         if idsString == nil { return nil }
         

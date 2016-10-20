@@ -12,7 +12,7 @@ import UIKit
 
 extension UIAlertView {
 
-    static func showWithError(error: NSError?) {
+    public static func showWithError(error: NSError?) {
         
         let msg = error?.errorDescrioption()
         UIAlertView.init(title: NSLocalizedString("Error", comment: ""),
@@ -21,7 +21,7 @@ extension UIAlertView {
                          cancelButtonTitle: NSLocalizedString("OK", comment: "")).show()
     }
     
-    static func showWithTitle(title: String?, message: String?) {
+    public static func showWithTitle(title: String?, message: String?) {
         if title != nil ||
             message != nil {
             UIAlertView.init(title: title,
