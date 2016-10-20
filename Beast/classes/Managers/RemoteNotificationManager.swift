@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import UserNotifications
 
 
 let kDeviceToken = "kDeviceToken"
@@ -38,12 +39,25 @@ class RemoteNotificationManager {
         #if (arch(i386) || arch(x86_64)) && os(iOS)
             //  SKIP PUSH NOTIFICATIONS IN SIMULATOR
         #else
-            let types: UIUserNotificationType = [.Badge,
-                                                 .Sound,
-                                                 .Alert]
-            let settings: UIUserNotificationSettings = UIUserNotificationSettings.init(forTypes: types,
-                                                                                       categories: nil)
-            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+            // iOS 10 support
+            if #available(iOS 10, *) {
+                UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+                // iOS 9 support
+            else if #available(iOS 9, *) {
+                UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+                // iOS 8 support
+            else if #available(iOS 8, *) {
+                UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+                // iOS 7 support
+            else {
+                UIApplication.shared.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
+            }
         #endif
     }
     
