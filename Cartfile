@@ -1,0 +1,3 @@
+#frameworks deps
+
+github "Hearst-DD/ObjectMapper" ~> 2.1

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "DBB69C3B292320F90C392473595B15A268F79BC2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8D0463CFF59EC463710D9C56F68237B85B60DE25" : 9223372036854775807,
+    "DBB69C3B292320F90C392473595B15A268F79BC2" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8785B9DF-89B6-4CBB-9ED6-BB6D51BA73DE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8D0463CFF59EC463710D9C56F68237B85B60DE25" : "..\/..\/..\/..\/Volumes\/UNTITLED\/mt",
+    "DBB69C3B292320F90C392473595B15A268F79BC2" : "Beast\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Beast",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Beast.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/gitlab.meetrip.com\/esso\/meetripios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8D0463CFF59EC463710D9C56F68237B85B60DE25"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/hcyrig\/Beast.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DBB69C3B292320F90C392473595B15A268F79BC2"
+    }
+  ]
+}
