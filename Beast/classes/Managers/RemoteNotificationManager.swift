@@ -11,15 +11,15 @@ import UIKit
 import UserNotifications
 
 
-let kDeviceToken = "kDeviceToken"
-
-enum RemoteNotificationManagerNames:String {
+public enum RemoteNotificationManagerNames:String {
     case Push = "RemoteNotificationManagerNamesPush"
 }
 
-class RemoteNotificationManager {
+public class RemoteNotificationManager {
     
-    static var deviceToken:String? {
+    public static let kDeviceToken = "kDeviceToken"
+    
+    public static var deviceToken:String? {
         
         get{
             return BeastNOSQL.object(key: kDeviceToken) as? String
@@ -29,7 +29,7 @@ class RemoteNotificationManager {
         }
     }
     
-    static func registerForPushNotifications() {
+    public static func registerForPushNotifications() {
         
         //  uncomment if reqistration eash time is not needed
         //  if RemoteNotificationManager.deviceToken()?.isEmpty != nil {
@@ -61,7 +61,7 @@ class RemoteNotificationManager {
         #endif
     }
     
-    static func isNotificationsPermissionGranted() -> Bool {
+    public static func isNotificationsPermissionGranted() -> Bool {
         
         let grantedSettings: UIUserNotificationSettings = UIApplication.shared.currentUserNotificationSettings!
         if grantedSettings.types == .none {
@@ -70,7 +70,7 @@ class RemoteNotificationManager {
         return true
     }
     
-    static func applicationDidRegisterForRemoteNotificationsWithDeviceToken(deviceToken: NSData!) {
+    public static func applicationDidRegisterForRemoteNotificationsWithDeviceToken(deviceToken: NSData!) {
         
         var str = deviceToken.description.replacingOccurrences(of: " ", with: "")
         str = deviceToken.description.replacingOccurrences(of: "<", with: "")
@@ -80,7 +80,7 @@ class RemoteNotificationManager {
         RemoteNotificationManager.deviceToken = str
     }
     
-    static func handleRemoteNotification(userInfo: [AnyHashable : Any],
+    public static func handleRemoteNotification(userInfo: [AnyHashable : Any],
                                          actionIdent: NSString? = nil) {
         
         if let apsData = userInfo["aps"] as? [AnyHashable : Any] {
@@ -88,13 +88,13 @@ class RemoteNotificationManager {
         }
     }
     
-    static func handleRemoteNotificationWithAPS(apsData: [AnyHashable : Any]) {
+    public static func handleRemoteNotificationWithAPS(apsData: [AnyHashable : Any]) {
         handleLocalNotificationWithAPS(apsData: apsData)
     }
     
     
     // MARK: override in ...
-    class func handleLocalNotificationWithAPS(apsData: [AnyHashable : Any]) {
+    public class func handleLocalNotificationWithAPS(apsData: [AnyHashable : Any]) {
         
     }
 }

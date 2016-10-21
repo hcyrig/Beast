@@ -10,9 +10,9 @@ import CFNetwork
 import Foundation
 
 
-extension NSError {
+public extension NSError {
     
-    func errorDomainRepresentation() -> ErrorProtocol? {
+    public func errorDomainRepresentation() -> ErrorProtocol? {
         
         switch domain {
         case NSCocoaErrorDomain:
@@ -30,14 +30,14 @@ extension NSError {
         }
     }
     
-    func errorHTTPRepresentation(code:Int) -> ErrorProtocol? {
+    public func errorHTTPRepresentation(code:Int) -> ErrorProtocol? {
         return ResponseCodeError(code: code)
     }
     
     
     // MARK: - return int type for http code from a response represantation
     
-    func errorCodeHTTPURLResponseObjectKey() -> Int? {
+    public func errorCodeHTTPURLResponseObjectKey() -> Int? {
         
         if let response = self.userInfo[BError.HTTPURLResponseObjectKey.rawValue] {
             return (response as AnyObject).statusCode
@@ -45,7 +45,7 @@ extension NSError {
         return nil
     }
     
-    func errorDescrioption() -> String? {
+    public func errorDescrioption() -> String? {
         
         if let errorStr = userInfo[NSLocalizedFailureReasonErrorKey] {
             return errorStr as? String
@@ -59,9 +59,9 @@ extension NSError {
 
 // MARK: - Parse error representation
 
-extension NSError {
+public extension NSError {
     
-    func isPoorConectionError() -> Bool {
+    public func isPoorConectionError() -> Bool {
         
         let codes: Array = [ CFNetworkErrors.cfurlErrorCancelled.rawValue,
                              CFNetworkErrors.cfurlErrorTimedOut.rawValue,
@@ -83,9 +83,9 @@ extension NSError {
 
 // MARK: - Parse error JSON representation
 
-extension NSError {
+public extension NSError {
     
-    static func processResponseError(JSONObj:AnyObject) -> NSError? {
+    public static func processResponseError(JSONObj:AnyObject) -> NSError? {
         
         var error:NSError?
         if let errorDict = JSONObj["error"] as? [String: AnyObject] {

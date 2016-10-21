@@ -10,9 +10,9 @@ import Foundation
 import MessageUI
 
 
-class ActionsManager: NSObject, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate {
+public class ActionsManager: NSObject, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate {
     
-    static let sharedInstance = ActionsManager()
+    public static let sharedInstance = ActionsManager()
     
     private override init() {
         super.init()
@@ -21,7 +21,7 @@ class ActionsManager: NSObject, MFMessageComposeViewControllerDelegate, MFMailCo
     
     // MARK: Phone
     
-    func callURLFromPhoneString(phone: String) -> NSURL? {
+    public func callURLFromPhoneString(phone: String) -> NSURL? {
     
         let charsSet = CharacterSet(charactersIn: "0123456789-+()").inverted
         let cleanedString = phone.components(separatedBy: charsSet).joined(separator: "")
@@ -29,11 +29,11 @@ class ActionsManager: NSObject, MFMessageComposeViewControllerDelegate, MFMailCo
         return telURL
     }
     
-    func canCallToURL(url: NSURL) -> Bool {
+    public func canCallToURL(url: NSURL) -> Bool {
         return UIApplication.shared.canOpenURL(url as URL)
     }
     
-    func callToURL(telURL: NSURL, alertTitle: String, alertMessage: String) {
+    public func callToURL(telURL: NSURL, alertTitle: String, alertMessage: String) {
         
         UIAlertView(title: alertTitle, message: alertMessage, delegate: nil, cancelButtonTitle: "Cancel", otherButtonTitles: "Call").show()
     }
@@ -41,7 +41,7 @@ class ActionsManager: NSObject, MFMessageComposeViewControllerDelegate, MFMailCo
     
     //MARK: send sms
     
-    func sendSMSTo(phone: String) {
+    public func sendSMSTo(phone: String) {
         
         if MFMessageComposeViewController.canSendText() == false {
             
@@ -55,7 +55,7 @@ class ActionsManager: NSObject, MFMessageComposeViewControllerDelegate, MFMailCo
         UIApplication.shared.keyWindow?.rootViewController?.present(messageController, animated: true, completion: nil)
     }
     
-    func emailTo(recipients: [String]) {
+    public func emailTo(recipients: [String]) {
     
         if MFMailComposeViewController.canSendMail() == false {
             
@@ -72,21 +72,21 @@ class ActionsManager: NSObject, MFMessageComposeViewControllerDelegate, MFMailCo
     
     // MARK: MFMailComposeViewControllerDelegate
     
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
     
     
     // MARK: MFMailComposeViewControllerDelegate
     
-    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+    public func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true, completion: nil)
     }
     
     
     // MARK: - open google maps from application by coordinates (lat, lng)
 
-    func openGoogleMaps(point:CGPoint?, shemas:String, name:String) {
+    public func openGoogleMaps(point:CGPoint?, shemas:String, name:String) {
     
         guard let p = point else {
             print("point can't be nil")
@@ -106,11 +106,11 @@ class ActionsManager: NSObject, MFMessageComposeViewControllerDelegate, MFMailCo
     
     // MARK: - open application's settings
     
-    func openSettings() {
+    public func openSettings() {
         openUrl(url: NSURL(string: UIApplicationOpenSettingsURLString))
     }
     
-    func openUrl(url:NSURL?, title:String? = nil, message:String? = nil) {
+    public func openUrl(url:NSURL?, title:String? = nil, message:String? = nil) {
         if let u = url {
             if UIApplication.shared.canOpenURL(u as URL) {
                 UIApplication.shared.openURL(u as URL)

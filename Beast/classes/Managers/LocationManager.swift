@@ -10,14 +10,14 @@ import CoreLocation
 import Foundation
 
 
-let LocationManagerDidUpdateLocationNotification = "LocationManagerDidUpdateLocationNotification"
-let LocationManagerDidUpdateHeadingNotification = "LocationManagerDidUpdateHeadingNotification"
+public let LocationManagerDidUpdateLocationNotification = "LocationManagerDidUpdateLocationNotification"
+public let LocationManagerDidUpdateHeadingNotification = "LocationManagerDidUpdateHeadingNotification"
 
-let kDidAskToTurnOnLocation = "kDidAskToTurnOnLocation"
+public let kDidAskToTurnOnLocation = "kDidAskToTurnOnLocation"
 
-class LocationManager: NSObject, CLLocationManagerDelegate {
+public class LocationManager: NSObject, CLLocationManagerDelegate {
     
-    static let sharedInstance = LocationManager()
+    public static let sharedInstance = LocationManager()
     
     private override init() {
         super.init()
@@ -31,7 +31,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     private(set) var heading: CLHeading?
     var locationChangedDistanceToNotify: CLLocationDistance = 50
     
-    static var didAskToTurnOnLocation: Bool? {
+    public static var didAskToTurnOnLocation: Bool? {
         get {
             if let value = (BeastNOSQL.object(key: kDidAskToTurnOnLocation) as AnyObject).boolValue {
                 return value
@@ -45,7 +45,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     // MARK: Class functions
     
-    static func requestLocationPermission() {
+    public static func requestLocationPermission() {
         
         if (CLLocationManager.authorizationStatus() == .denied && LocationManager.didAskToTurnOnLocation != nil) {
             
@@ -63,7 +63,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         LocationManager.sharedInstance.startUpdatingLocation()
     }
     
-    static func isAuthorized() -> Bool {
+    public static func isAuthorized() -> Bool {
         
         let status: CLAuthorizationStatus = CLLocationManager.authorizationStatus()
         if status == .notDetermined || status == .denied || status == .restricted {
@@ -75,7 +75,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     // MARK: Actions
     
-    func startUpdatingLocation() {
+    public func startUpdatingLocation() {
         
         if self.locationManager == nil {
             
@@ -97,17 +97,17 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func stopUpdatingLocation() {
+    public func stopUpdatingLocation() {
         
         self.locationManager.stopUpdatingLocation()
     }
     
-    func startUpdatingHeading() {
+    public func startUpdatingHeading() {
         
         self.locationManager.startUpdatingHeading()
     }
     
-    func stopUpdatingHeading() {
+    public func stopUpdatingHeading() {
         
         self.locationManager.stopUpdatingHeading()
     }
@@ -115,7 +115,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     // MARK: CLLocationManagerDelegate
     
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         if LocationManager.isAuthorized() {
             self.startUpdatingLocation()
@@ -125,7 +125,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let newLocation = locations.last {
             if self.location != nil {
@@ -141,11 +141,11 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+    public func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
 
         heading = newHeading
         

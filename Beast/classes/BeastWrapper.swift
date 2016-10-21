@@ -11,7 +11,7 @@ import Foundation
 
 // MARK: - object's manipulator
 
-class BeastWrapper {
+public class BeastWrapper {
     
     public static func stringWithNamesOfObjsByIds(objIds: [Int]?, fromObjs:[AnyObject]) -> String? {
         if objIds == nil { return nil }

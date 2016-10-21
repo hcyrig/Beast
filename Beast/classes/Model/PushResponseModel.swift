@@ -11,18 +11,18 @@ import Foundation
 import ObjectMapper
 
 
-class PushResponseModel: BMappable  {
+public class PushResponseModel: BMappable  {
     
-    var _id: Int?
-    var _title: String?
-    var alert: String!
-    var messageCode: String!
+    public var _id: Int?
+    public var _title: String?
+    public var alert: String!
+    public var messageCode: String!
     
-    required init?(map: Map) {
+    required public init?(map: Map) {
         mapping(map: map)
     }
     
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         
         _id <- map["id"]
         _title <- map["title"]

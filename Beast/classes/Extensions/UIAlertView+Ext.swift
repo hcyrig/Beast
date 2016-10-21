@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-extension UIAlertView {
+public extension UIAlertView {
 
     public static func showWithError(error: NSError?) {
         

@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum BError:String {
+public enum BError:String {
     case Domain = "com.beast.domain"
     case HTTPURLResponseObjectKey =  "HTTPURLResponseObjectKey"
 }
@@ -17,7 +17,7 @@ enum BError:String {
 
 // MARK: - There is error protocol for any codes representation enums
 
-protocol ErrorProtocol {
+public protocol ErrorProtocol {
     
     
     // MARK: -  the error code identificator
@@ -38,11 +38,11 @@ protocol ErrorProtocol {
 
 // MARK: - NSCocoaDomainError codes representation keys
 
-enum CocoaDomainError:ErrorProtocol {
+public enum CocoaDomainError:ErrorProtocol {
     
     case error(Int, String, String?)
     
-    func code() -> Int {
+    public func code() -> Int {
         
         switch self {
         case let .error(code, _, _):
@@ -50,7 +50,7 @@ enum CocoaDomainError:ErrorProtocol {
         }
     }
     
-    func key() -> String {
+    public func key() -> String {
         
         switch self {
         case let .error(_, key, _):
@@ -58,7 +58,7 @@ enum CocoaDomainError:ErrorProtocol {
         }
     }
     
-    func info() -> String? {
+    public func info() -> String? {
         
         switch self {
         case let .error(_, _, info):
@@ -66,7 +66,7 @@ enum CocoaDomainError:ErrorProtocol {
         }
     }
     
-    init(code:Int, info:String? = nil) {
+    public init(code:Int, info:String? = nil) {
         
         var errorKey = "Unknown key"
         switch code {
@@ -153,11 +153,11 @@ enum CocoaDomainError:ErrorProtocol {
 
 // MARK: - NSURLDomainError codes representation keys
 
-enum URLDomainError:ErrorProtocol {
+public enum URLDomainError:ErrorProtocol {
     
     case error(code:Int, key:String, info:String?)
     
-    func code() -> Int {
+    public func code() -> Int {
         
         switch self{
         case let .error(code, _, _):
@@ -165,7 +165,7 @@ enum URLDomainError:ErrorProtocol {
         }
     }
     
-    func key() -> String {
+    public func key() -> String {
         
         switch self{
         case let .error(_, key, _):
@@ -173,7 +173,7 @@ enum URLDomainError:ErrorProtocol {
         }
     }
     
-    func info() -> String? {
+    public func info() -> String? {
         
         switch self {
         case let .error(_, _, info):
@@ -181,7 +181,7 @@ enum URLDomainError:ErrorProtocol {
         }
     }
     
-    init(code:Int, info:String? = nil) {
+    public init(code:Int, info:String? = nil) {
         
         var errorKey = "Unknown key"
         switch code {
@@ -248,9 +248,9 @@ enum URLDomainError:ErrorProtocol {
 
 // MARK: - http protocol response codes
 
-enum ResponseCodeError:ErrorProtocol {
+public enum ResponseCodeError:ErrorProtocol {
     
-    enum ResponseCode:Int {
+    public enum ResponseCode:Int {
         
         /// Continue: 100
         ///
@@ -640,7 +640,7 @@ enum ResponseCodeError:ErrorProtocol {
     
     case error(code:Int, key:String, info:String?)
     
-    func code() -> Int {
+    public func code() -> Int {
         
         switch self{
         case let .error(code, _, _):
@@ -648,7 +648,7 @@ enum ResponseCodeError:ErrorProtocol {
         }
     }
     
-    func key() -> String {
+    public func key() -> String {
         
         switch self{
         case let .error(_, key, _):
@@ -656,7 +656,7 @@ enum ResponseCodeError:ErrorProtocol {
         }
     }
     
-    func info() -> String? {
+    public func info() -> String? {
         
         switch self {
         case let .error(_, _, info):
@@ -664,7 +664,7 @@ enum ResponseCodeError:ErrorProtocol {
         }
     }
     
-    init(code:Int, info:String? = nil) {
+    public init(code:Int, info:String? = nil) {
         
         var errorKey = "Unknown key"
         switch code {

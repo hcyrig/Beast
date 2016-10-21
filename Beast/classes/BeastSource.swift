@@ -13,7 +13,7 @@ import ObjectMapper
 
 // MARK: - ObjectMapper + NSUserDefaults generic data source
 
-class BeastSource<T:BMappable>  {
+public class BeastSource<T:BMappable>  {
     
     
     // MARK: - manual key storage
@@ -71,7 +71,7 @@ class BeastSource<T:BMappable>  {
 
 // MARK: - BeastNOSQL data source
 
-class BeastNOSQL {
+public class BeastNOSQL {
     
     
     // MARK: - simple object
