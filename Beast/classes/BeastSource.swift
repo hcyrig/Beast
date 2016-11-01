@@ -85,7 +85,7 @@ public class BeastNOSQL {
     }
     
     
-    // MARK: - mappable single object
+    // MARK: - mappable single object like JSONString
     
     public static func setMappableObject<N:BMappable>(value: N?, key: String) {
         
@@ -97,11 +97,14 @@ public class BeastNOSQL {
     }
     
     public static func mappableObject<N:BMappable>(forKey: String, mapper: Mapper<N>) -> N? {
-        return mapper.map(JSONObject: object(key: forKey))
+        guard let str = object(key: forKey) as? String else {
+           return nil
+        }
+        return mapper.map(JSONString: str)
     }
     
     
-    // MARK: - mappable objects array
+    // MARK: - mappable objects array like JSONString
     
     public static func setMappableObjectsArray<N:BMappable>(value: [N]?, key: String) {
         
@@ -113,6 +116,9 @@ public class BeastNOSQL {
     }
     
     public static func mappableObjectsArray<N:BMappable>(forKey: String, mapper: Mapper<N>) -> [N]? {
-        return mapper.mapArray(JSONObject: object(key: forKey))
+        guard let str = object(key: forKey) as? String else {
+            return nil
+        }
+        return mapper.mapArray(JSONString: str)
     }
 }
