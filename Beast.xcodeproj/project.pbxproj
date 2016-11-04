@@ -17,7 +17,7 @@
 		236F4C111DB8EE8400ADABE5 /* RemoteNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236F4C061DB8EE8400ADABE5 /* RemoteNotificationManager.swift */; };
 		236F4C121DB8EE8400ADABE5 /* PushResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236F4C081DB8EE8400ADABE5 /* PushResponseModel.swift */; };
 		236F4C141DB8FCB500ADABE5 /* Mappable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236F4C131DB8FCB500ADABE5 /* Mappable+Ext.swift */; };
-		236F4C161DB90E8B00ADABE5 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236F4C151DB90E8B00ADABE5 /* UserNotifications.framework */; };
+		236F4C161DB90E8B00ADABE5 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236F4C151DB90E8B00ADABE5 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		23A8EBE91DB8238C00A69BF3 /* Beast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23A8EBDF1DB8238C00A69BF3 /* Beast.framework */; };
 		23A8EBEE1DB8238C00A69BF3 /* BeastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A8EBED1DB8238C00A69BF3 /* BeastTests.swift */; };
 		23A8EC0C1DB82FD100A69BF3 /* Beast.h in Headers */ = {isa = PBXBuildFile; fileRef = 23A8EC0B1DB82FD100A69BF3 /* Beast.h */; settings = {ATTRIBUTES = (Public, ); }; };

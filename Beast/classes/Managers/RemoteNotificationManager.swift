@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import UserNotifications
 
-
 public enum RemoteNotificationManagerNames:String {
     case Push = "RemoteNotificationManagerNamesPush"
 }
