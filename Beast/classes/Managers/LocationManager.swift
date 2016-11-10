@@ -23,9 +23,10 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
         super.init()
     }
     
+    
     // MARK: Properties
     
-    private(set) var location: CLLocation?
+    public var location: CLLocation?
     private(set) var locationManager: CLLocationManager!
     private(set) var simulationMode: Bool = false
     private(set) var heading: CLHeading?
@@ -136,7 +137,6 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
             }
             
             self.location = newLocation
-            
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: LocationManagerDidUpdateLocationNotification), object: nil)
         }
     }
