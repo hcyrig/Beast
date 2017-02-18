@@ -39,7 +39,7 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
         
         if !CLLocationManager.locationServicesEnabled()
         || !isAuthorized() {
-            requestAutorization(deniedCallBack)
+            requestAutorization(deniedCallBack: deniedCallBack)
             print("location services disabled")
             return
         }
@@ -85,7 +85,7 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
             stopUpdatingLocation()
             return
         }
-        startUpdatingLocation()
+        startUpdatingLocation(deniedCallBack: nil)
     }
     
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
