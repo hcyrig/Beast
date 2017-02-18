@@ -35,11 +35,11 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
     
     // MARK: Actions
     
-    public func startUpdatingLocation() {
+    public func startUpdatingLocation(deniedCallBack:(()->())?) {
         
         if !CLLocationManager.locationServicesEnabled()
         || !isAuthorized() {
-            requestAutorization()
+            requestAutorization(deniedCallBack)
             print("location services disabled")
             return
         }
@@ -48,22 +48,6 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
     
     public func stopUpdatingLocation() {
         manager.stopUpdatingLocation()
-    }
-
-    
-    // MARK: Class functions
-    
-    public func showManualAutorizationAlert() {
-        
-        let alert = UIAlertView(title: nil, message: NSLocalizedString("Please enable device Location Services", comment: ""), delegate: nil, cancelButtonTitle: nil)
-        
-        alert.addButtonItem(RIButtonItem.itemWithLabel(NSLocalizedString("Cancel", comment: "")) as! RIButtonItem)
-        
-        alert.addButtonItem(RIButtonItem.itemWithLabel(NSLocalizedString("Open Settings", comment: ""), action: { () -> Void in
-            ActionsManager.sharedInstance.openSettings()
-        }) as! RIButtonItem)
-        
-        alert.show()
     }
     
     public func isAuthorized() -> Bool {
@@ -78,17 +62,17 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
         return false
     }
     
-    public func requestAutorization() {
+    public func requestAutorization(deniedCallBack:(()->())?) {
     
         switch CLLocationManager.authorizationStatus() {
         case .authorizedAlways: break
         case .authorizedWhenInUse: break
         case .denied:
-            showManualAutorizationAlert()
+            deniedCallBack?()
         case .notDetermined:
             manager.requestWhenInUseAuthorization()
         case .restricted:
-            showManualAutorizationAlert()
+            deniedCallBack?()
         }
     }
 
